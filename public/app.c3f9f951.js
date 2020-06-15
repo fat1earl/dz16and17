@@ -156,7 +156,7 @@ var Content = /*#__PURE__*/function () {
   }, {
     key: "_createEditButton",
     value: function _createEditButton(id) {
-      var btnNode = document.createElement("button");
+      var btnNode = document.createElement("btnEdit");
       btnNode.classList.value = "btn btn-warning mt-auto";
       btnNode.textContent = "Редактировать";
       btnNode.setAttribute("data-id", id);
@@ -208,8 +208,7 @@ var Content = /*#__PURE__*/function () {
 
       var btEdit = this._createEditButton(this.data.id);
 
-      var template = "\n    <div class=\"header_content\">\n      <h3>".concat(this.data.name, "</h3>\n      <button type=\"button\" class=\"btn btn-danger\">x</button>\n      </div>\n      <h6 class=\"text-muted\">\u0421\u043E\u0437\u0434\u0430\u043D\u043E/\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E ").concat(this.data.date, "</h6>\n      <div>\u0422\u0435\u043B\u0435\u0444\u043E\u043D: ").concat(this.data.number, "</div>\n      <div>\u0424\u0430\u043C\u0438\u043B\u0438\u044F: ").concat(this.data.lastName, "</div>\n      <div>\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E: ").concat(this.data.surName, "</div>\n      <div>\u0414\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C: ").concat(this.data.work, "</div>\n      <div>\u0415\u043C\u0430\u0439\u043B: ").concat(this.data.mail, "</div>\n      <div>\u0417\u0430\u043C\u0435\u0442\u043A\u0430: ").concat(this.data.content, "</div>\n    "); // console.log(template);
-
+      var template = "\n    <div class=\"header_content\">\n      <h3>".concat(this.data.name, "</h3></div>\n      <h6 class=\"text-muted\">\u0421\u043E\u0437\u0434\u0430\u043D\u043E/\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u043E ").concat(this.data.date, "</h6>\n      <div>\u0422\u0435\u043B\u0435\u0444\u043E\u043D: ").concat(this.data.number, "</div>\n      <div>\u0424\u0430\u043C\u0438\u043B\u0438\u044F: ").concat(this.data.lastName, "</div>\n      <div>\u041E\u0442\u0447\u0435\u0441\u0442\u0432\u043E: ").concat(this.data.surName, "</div>\n      <div>\u0414\u043E\u043B\u0436\u043D\u043E\u0441\u0442\u044C: ").concat(this.data.work, "</div>\n      <div>\u0415\u043C\u0430\u0439\u043B: ").concat(this.data.mail, "</div>\n      <div>\u0417\u0430\u043C\u0435\u0442\u043A\u0430: ").concat(this.data.content, "</div>\n    ");
       this.container.innerHTML = this.container.innerHTML + template;
       this.container.append(btEdit);
     }
@@ -282,7 +281,7 @@ var List = /*#__PURE__*/function () {
         }).then(function (response) {
           return response.json();
         }).then(function (data) {
-          data.list.forEach(function (item) {
+          return data.list.forEach(function (item) {
             if (id == item.id) {
               new _content.Content(document.querySelector("#content"), item);
             }
@@ -300,7 +299,7 @@ var List = /*#__PURE__*/function () {
       this._clear();
 
       this.data.forEach(function (item) {
-        var template = "\n        <div class=\"list-item p-3\" data-id=\"".concat(item.id, "\">\n          <h5>").concat(item.name, "</h5>\n          <small>").concat(item.date, "</small>\n          \n\n          \n        </div>\n      ");
+        var template = "\n        <div class=\"list-item p-3\" data-id=\"".concat(item.id, "\">\n          <h5>").concat(item.name, "</h5>\n          <small>").concat(item.date, "</small>\n        </div>\n      ");
         _this.container.innerHTML = _this.container.innerHTML + template;
       });
     }
@@ -382,10 +381,7 @@ var Form = /*#__PURE__*/function () {
     this.dateField = document.querySelector('[name="date"]');
     this.btnSubmit = document.querySelector('[type="submit"]');
     this.listContainer = document.querySelector("#list");
-    this.contentContainer = document.querySelector("#content"); ///////////
-    // const nameField = form.querySelector('[name="name"]');
-
-    console.log(this.contentContainer);
+    this.contentContainer = document.querySelector("#content");
     this.handleSubmit = this._submit.bind(this);
 
     this._init();
@@ -427,6 +423,8 @@ var Form = /*#__PURE__*/function () {
 
       var url = "/api/data";
       if (method == "PUT") url = url + "/".concat(data.id);
+      var btnNode = document.querySelector("btnEdit");
+      var id = btnNode.getAttribute("data-id");
       fetch(url, {
         method: method,
         headers: {
@@ -437,8 +435,13 @@ var Form = /*#__PURE__*/function () {
         return response.json();
       }).then(function (data) {
         return new _list.List(_this.listContainer, data.list);
-      }) // .then((data) => new Content(this.contentContainer, data.list)) ///////////////////////
-      .catch(function (error) {
+      }).then(function (data) {
+        return data.list.forEach(function (item) {
+          if (id == item.id) {
+            new _content.Content(_this.contentContainer, item);
+          }
+        });
+      }).catch(function (error) {
         return console.error(error);
       });
     }
@@ -524,7 +527,7 @@ fetch("/api/data", {
 }).catch(function (error) {
   return console.error(error);
 });
-},{"./form":"js/form.js","./list":"js/list.js","./reset-form":"js/reset-form.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./form":"js/form.js","./list":"js/list.js","./reset-form":"js/reset-form.js"}],"../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -552,7 +555,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52329" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64479" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -728,5 +731,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
+},{}]},{},["../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
 //# sourceMappingURL=app.c3f9f951.js.map

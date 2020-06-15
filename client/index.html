@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Контактная книга</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./scss/app.scss" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://kit.fontawesome.com/98db508811.js" crossorigin="anonymous"></script>
+    <script src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="container pt-3">
+      <div class="d-flex align-items-center">
+        <h2>Контактная книга <i class="far fa-address-book"></i> </h2>
+        <button class="btn btn-primary ml-auto" id="createBtn">
+          Создать контакт
+        </button>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-4">
+          <div class="jumbotron p-0" id="list"></div>
+        </div>
+        <div class="col-8">
+          <div class="jumbotron p-3" id="content"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ------------------------------------------------------------------------------- -->
+    <!-- Create new post -->
+    <div
+      class="modal fade"
+      id="formModal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="formModal">Редактор контакта</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+          <div class="modal-body">
+            <form data-method="POST" id="form">
+              <input type="hidden" name="id" />
+              <input type="hidden" name="date" />
+
+              <div class="form-group">
+                <!-- <label for="title" class="col-form-label">Новый контакт</label> -->
+                <input type="text" class="form-control" name="name" placeholder="Имя..." minlength="2" maxlength="30" required/>
+                <div class="alert alert-danger mt-2">
+                  Введите ваше имя, количество символов от 2 до 25
+                </div>
+              </div>
+              
+              
+              <div class="form-group"><input type="tel" class="form-control" name='number' placeholder="Телефон..." minlength="7"
+                maxlength="12" required />
+                <div class="alert alert-danger mt-2">
+                  Введите корректный номер телефона
+                </div>
+              </div>
+              <div class="form-group"><input type="text" class="form-control" name='lastName' placeholder="Фамилия..." minlength="2"
+                maxlength="30" /></div>
+              <div class="form-group"><input type="text" class="form-control" name='surName' placeholder="Отчество..." minlength="2"
+                maxlength="30" /></div>
+              <div class="form-group"><input type="text" class="form-control" name='work' placeholder="Должность..." minlength="2"
+                maxlength="30" /></div>
+              <div class="form-group"> <input type="email" class="form-control" name='mail' placeholder="E-mail..." minlength="2"
+                maxlength="30"/></div>
+              <div class="form-group"><label for="content" class="col-form-label">Заметка</label>
+                <textarea class="form-control" name="content" rows="1"></textarea></div>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Отмена
+            </button>
+            <button type="submit" class="btn btn-primary" form="form">
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

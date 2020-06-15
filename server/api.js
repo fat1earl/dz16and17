@@ -1,30 +1,31 @@
-var express = require('express');
-var data = require('../data');
-var router = express.Router();
-var fs = require('fs');
+const express = require('express');
+const data = require('../data');
 
-router.get('/', function (req, res, next) {
+const router = express.Router();
+const fs = require('fs');
+
+router.get('/', (req, res, next) => {
   res.json(data);
 });
 
-router.post('/', function (req, res, next) {
-  var newItem = req.body;
+router.post('/', (req, res, next) => {
+  const newItem = req.body;
 
-  var arr = [...data.list];
+  const arr = [...data.list];
   arr.push(newItem);
   data.list = arr;
-  fs.writeFile('./data.json', JSON.stringify(data), function (err) {
+  fs.writeFile('./data.json', JSON.stringify(data), (err) => {
     if (err) throw err;
     res.send(JSON.stringify(data));
   });
 });
 
-router.put('/:id', function (req, res, next) {
-  var id = req.params.id;
-  var updatedItem = req.body;
+router.put('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const updatedItem = req.body;
 
-  var arr = [...data.list];
-  var newArr = arr.map((item) => {
+  const arr = [...data.list];
+  const newArr = arr.map((item) => {
     if (item.id == id) {
       return updatedItem;
     }
@@ -33,7 +34,7 @@ router.put('/:id', function (req, res, next) {
   });
   data.list = newArr;
 
-  fs.writeFile('./data.json', JSON.stringify(data), function (err) {
+  fs.writeFile('./data.json', JSON.stringify(data), (err) => {
     if (err) throw err;
     res.send(JSON.stringify(data));
   });

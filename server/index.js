@@ -1,8 +1,8 @@
-const path = require('path'),
-  express = require('express'),
-  bodyParser = require('body-parser'),
-  apiRout = require('./api'),
-  fs = require('fs');
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
+const apiRout = require('./api');
 
 module.exports = (url) => {
   const app = express();

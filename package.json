@@ -7,6 +7,7 @@
     "dev": "parcel client/index.html -d public --public-url ./",
     "build": "parcel build client/index.html -d public --public-url ./",
     "lint": "eslint ./server/**/*.js ./client/js/**/*.js",
+    "lint:fix": "eslint ./server/**/*.js ./client/js/**/*.js --fix",
     "start": "node starter.js"
   },
   "keywords": [],
@@ -19,12 +20,24 @@
     "mongoose": "^4.13.4"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "babel-preset-env": "^1.6.1",
     "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.21.1",
+    "eslint-config-babel": "^9.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.21.2",
     "nodemon": "^1.12.1",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fat1earl/dz16and17.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fat1earl/dz16and17/issues"
+  },
+  "homepage": "https://github.com/fat1earl/dz16and17#readme"
 }
