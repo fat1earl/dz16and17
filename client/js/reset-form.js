@@ -5,6 +5,6 @@ export function resetForm(form) {
 
   // Найдём все скрытые поля в форме и сбросим их значение
   [...form.querySelectorAll('[type="hidden"]')].forEach((input) => {
-    input.value = '';
+    input.value = "";
   });
 }

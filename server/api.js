@@ -40,4 +40,23 @@ router.put('/:id', (req, res, next) => {
   });
 });
 
+router.delete('/:id', (req, res, next) => {
+  const { id } = req.params;
+
+  const arr = [...data.list];
+  const newArr = arr.filter((item) => {
+    if (item.id == id) {
+      return false;
+    }
+
+    return true;
+  });
+  data.list = newArr;
+
+  fs.writeFile('./data.json', JSON.stringify(data), (err) => {
+    if (err) throw err;
+    res.send(JSON.stringify(data));
+  });
+});
+
 module.exports = router;

@@ -1,22 +1,24 @@
-import { Form } from './form';
-import { List } from './list';
-import { resetForm } from './reset-form';
+import { Form } from "./form";
+import { List } from "./list";
+import { resetForm } from "./reset-form";
+import "./regexp";
 
-const formNode = document.querySelector('#form');
+const formNode = document.querySelector("#form");
 new Form(formNode);
 
 // ---------------------------------------------------
 
-const createBtnNode = document.querySelector('#createBtn');
-createBtnNode.addEventListener('click', () => {
-  formNode.setAttribute('data-method', 'POST');
+const createBtnNode = document.querySelector("#createBtn");
+createBtnNode.addEventListener("click", () => {
+  formNode.setAttribute("data-method", "POST");
   resetForm(formNode);
-  $('#formModal').modal('show');
+  $("#formModal").modal("show");
 });
 
-const listNode = document.querySelector('#list');
+const listNode = document.querySelector("#list");
+const list = new List(listNode);
 
-fetch('/api/data', { method: 'GET' })
+fetch("/api/data", { method: "GET" })
   .then((response) => response.json())
-  .then((data) => new List(listNode, data.list))
+  .then((data) => list.render(data.list))
   .catch((error) => console.error(error));

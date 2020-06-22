@@ -80,28 +80,35 @@
               <input type="hidden" name="date" />
 
               <div class="form-group">
-                <!-- <label for="title" class="col-form-label">Новый контакт</label> -->
-                <input type="text" class="form-control" name="name" placeholder="Имя..." minlength="2" maxlength="30" required/>
+                <input class="form-control" name="name" placeholder="Имя..." pattern="[A-Za-zА-Яа-яЁё\s]{2,25}" required/>
                 <div class="alert alert-danger mt-2">
-                  Введите ваше имя, количество символов от 2 до 25
+                  Введите имя, количество букв от 2 до 25
                 </div>
               </div>
               
               
-              <div class="form-group"><input type="tel" class="form-control" name='number' placeholder="Телефон..." minlength="7"
-                maxlength="12" required />
+              <div class="form-group"><input type="tel" class="form-control" name='number' placeholder="Телефон..." minlength="8"
+                maxlength="13" required />
                 <div class="alert alert-danger mt-2">
-                  Введите корректный номер телефона
+                  Введите корректный номер телефона в международном формате
                 </div>
               </div>
-              <div class="form-group"><input type="text" class="form-control" name='lastName' placeholder="Фамилия..." minlength="2"
-                maxlength="30" /></div>
-              <div class="form-group"><input type="text" class="form-control" name='surName' placeholder="Отчество..." minlength="2"
-                maxlength="30" /></div>
-              <div class="form-group"><input type="text" class="form-control" name='work' placeholder="Должность..." minlength="2"
-                maxlength="30" /></div>
-              <div class="form-group"> <input type="email" class="form-control" name='mail' placeholder="E-mail..." minlength="2"
-                maxlength="30"/></div>
+              <div class="form-group"><input class="form-control" name='lastName' placeholder="Фамилия..." pattern="[A-Za-zА-Яа-яЁё\s]{2,25}" />
+                <div class="alert alert-danger mt-2">
+                  Введите фамилию, количество букв от 2 до 25
+                </div></div>
+              <div class="form-group"><input class="form-control" name='surName' placeholder="Отчество..." pattern="[A-Za-zА-Яа-яЁё\s]{2,25}" />
+                <div class="alert alert-danger mt-2">
+                  Введите отчество, количество букв от 2 до 25
+                </div></div>
+              <div class="form-group"><input class="form-control" name='work' placeholder="Должность..." pattern="[A-Za-zА-Яа-яЁё\s]{2,25}" />
+                <div class="alert alert-danger mt-2">
+                  Введите должность, количество букв от 2 до 25
+                </div></div>
+              <div class="form-group"> <input class="form-control" name='mail' placeholder="E-mail..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"/><div class="alert alert-danger mt-2">
+                  Введите корректный email
+                </div>
+              </div>
               <div class="form-group"><label for="content" class="col-form-label">Заметка</label>
                 <textarea class="form-control" name="content" rows="1"></textarea></div>
               
@@ -122,5 +129,6 @@
         </div>
       </div>
     </div>
+
   </body>
 </html>
